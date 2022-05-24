@@ -1,0 +1,2 @@
+# OpensCrypt
+basic encrypt script
