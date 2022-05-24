@@ -131,7 +131,7 @@ class opensRSA
     public static function generateHashWithPrivateKey(string $data, bool $base64 = false)
     {
         $privateKey = openssl_pkey_get_private(file_get_contents(self::getPrivateKeyFilePathAndName()));
-        openssl_private_encrypt($data, $hash, $privateKey, OPENSSL_PKCS1_PADDING);
+        openssl_private_encrypt("${data}", $hash, $privateKey, OPENSSL_PKCS1_PADDING);
         self::$hash =  $hash;
         return $base64 ? base64_encode(self::$hash) : self::$hash;
     }
@@ -139,7 +139,7 @@ class opensRSA
     public static function generateHashWithPublicKey(string $data, bool $base64 = false)
     {
         $publicKey = openssl_pkey_get_public(file_get_contents(self::getPublicKeyFilePathAndName()));
-        openssl_public_encrypt($data, $hash, $publicKey, OPENSSL_PKCS1_PADDING);
+        openssl_public_encrypt("${data}", $hash, $publicKey, OPENSSL_PKCS1_PADDING);
         self::$hash =  $hash;
         return $base64 ? base64_encode(self::$hash) : self::$hash;
     }
