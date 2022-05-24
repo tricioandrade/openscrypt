@@ -1,11 +1,11 @@
 {
-    "name": "tricioandrade/en-crypt",
+    "name": "tricioandrade/OpensCrypt",
     "description": "basic encripty script",
     "type": "plugin",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Tricioandrade\\EnCrypt\\": "src/"
+            "Tricioandrade\\OpensCrypt\\": "src/"
         }
     },
     "authors": [
