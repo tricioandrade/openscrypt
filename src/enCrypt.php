@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace Tricioandrade\OpensCrypt;
 
 class enCrypt
 {
