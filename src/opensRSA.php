@@ -20,14 +20,6 @@ class opensRSA
     private static $hash;
 
     /**
-     * @param array $configArgs
-     */
-    public static function setConfigArgs(array $configArgs): void{
-        self::$configArgs = $configArgs;
-    }
-
-
-    /**
      * @param mixed $digest_alg
      */
     public static function setDigestAlg($digest_alg): void {
