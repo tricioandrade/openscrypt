@@ -12,7 +12,7 @@ class opensRSA
     private static $configFile;
 
     private static $privateKey;
-    private static $publicKey
+    private static $publicKey;
 
     private static $publicKeyFilePath;
     private static $privateKeyFilePath;
@@ -136,20 +136,20 @@ class opensRSA
 
     }
 
-    public static function generateHashWithPrivateKey(string $data)
+    public static function generateHashWithPrivateKey(string $data, bool $base64 = false)
     {
         $privateKey = openssl_pkey_get_private(file_get_contents(self::getPrivateKeyFilePathAndName()));
         openssl_private_encrypt($data, $hash, $privateKey, OPENSSL_PKCS1_PADDING);
-
-        return self::$hash =  $hash;
+        self::$hash =  $hash;
+        return $base64 ? base64_encode(self::$hash) : self::$hash;
     }
 
-    public static function generateHashWithPublicKey(string $data)
+    public static function generateHashWithPublicKey(string $data, bool $base64 = false)
     {
         $publicKey = openssl_pkey_get_public(file_get_contents(self::getPublicKeyFilePathAndName()));
-        openssl_private_encrypt($data, $hash, $publicKey, OPENSSL_PKCS1_PADDING);
-
-        return self::$hash =  $hash;
+        openssl_public_encrypt($data, $hash, $publicKey, OPENSSL_PKCS1_PADDING);
+        self::$hash =  $hash;
+        return $base64 ? base64_encode(self::$hash) : self::$hash;
     }
 }
 
