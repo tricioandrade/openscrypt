@@ -1,0 +1,19 @@
+{
+    "name": "tricioandrade/en-crypt",
+    "description": "basic encripty script",
+    "type": "plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tricioandrade\\EnCrypt\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Patrício Andrade",
+            "email": "tricioandrade@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
