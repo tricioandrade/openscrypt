@@ -1,6 +1,6 @@
 {
-    "name": "tricioandrade/OpensCrypt",
-    "description": "basic encripty script",
+    "name": "tricioandrade/openscrypt",
+    "description": "a basic script for encrypt data",
     "type": "plugin",
     "license": "MIT",
     "autoload": {
@@ -14,6 +14,8 @@
             "email": "tricioandrade@outlook.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {}
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4"
+    }
 }
