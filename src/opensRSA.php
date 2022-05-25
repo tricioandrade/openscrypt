@@ -105,7 +105,7 @@ class opensRSA
     /**
      * @return array
      */
-    public static function getConfigArgs(): array{
+    private static function getConfigArgs(): array{
         return self::$configArgs = [
             'config' => self::getConfigFile(),
             'private_key_bits' => self::getPrivateKeyBits(),
@@ -114,12 +114,12 @@ class opensRSA
     }
 
     private static function generatedConfig(){
-        return openssl_pkey_new(self::$configArgs);
+        return openssl_pkey_new(self::getConfigArgs());
     }
 
     public static function generateKeys()
     {
-            openssl_pkey_export(self::generatedConfig(), $privateKey, NULL, self::$configArgs);
+            openssl_pkey_export(self::generatedConfig(), $privateKey, NULL, self::getConfigArgs());
             self::$privateKey = $privateKey;
             self::$publicKey = openssl_pkey_get_details(self::generatedConfig());
 
