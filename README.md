@@ -1,2 +1,2 @@
-# OpensCrypt
+# openscript
 basic encrypt script
