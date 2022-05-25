@@ -22,14 +22,14 @@ class opensRSA
     /**
      * @param mixed $digest_alg
      */
-    public static function setDigestAlg($digest_alg): void {
+    public static function setDigestAlg(string $digest_alg): void {
         self::$digest_alg = $digest_alg;
     }
 
     /**
      * @param mixed $privateKeyBits
      */
-    public static function setPrivateKeyBits($privateKeyBits): void{
+    public static function setPrivateKeyBits(int $privateKeyBits): void{
         self::$privateKeyBits = $privateKeyBits;
     }
 
