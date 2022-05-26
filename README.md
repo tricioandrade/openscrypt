@@ -4,7 +4,7 @@
 
 <p>OpensCrypt is a package that aims to integrate scripts <i>Classes or Objects, methods</i> that will use PHP's cryptographic functions to encrypt data.</p>
 
-The current version [1.1.0](https://packagist.org/packages/tricioandrade/openscrypt), in the class uses the Openssl php library to generate keys pairs for asymmetric encryption.
+The current version [1.1.0](https://packagist.org/packages/tricioandrade/openscrypt), in the class uses the Openssl php library to generate key pairs for asymmetric encryption.
 
 ## Installation
 <p>Open the terminal and run:</p>
