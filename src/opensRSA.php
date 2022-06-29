@@ -19,6 +19,10 @@ class opensRSA
 
     private static $hash;
 
+    public static $privateKeyEncrypt = 1;
+    public static $publicKeyEncrypt = 2;
+    public static $opensslSign = 3;
+
     /**
      * @param mixed $digest_alg
      */
@@ -128,19 +132,29 @@ class opensRSA
 
     }
 
-    public static function generateHashWithPrivateKey(string $data, bool $base64 = false)
+    public static function encrypt(string $data, int $generateWith = 1, bool $base64 = false, int $padding_algo = null)
     {
-        $privateKey = openssl_pkey_get_private(file_get_contents(self::getPrivateKeyFilePathAndName()));
-        openssl_private_encrypt("${data}", $hash, $privateKey, OPENSSL_PKCS1_PADDING);
-        self::$hash =  $hash;
-        return $base64 ? base64_encode(self::$hash) : self::$hash;
-    }
+        switch($generateWith):
+            case self::$privateKeyEncrypt:
+                    $privateKey = openssl_pkey_get_private(file_get_contents(self::getPrivateKeyFilePathAndName()));
+                    openssl_private_encrypt("${data}", $hash, $privateKey,( $padding_algo ?? OPENSSL_PKCS1_OAEP_PADDING));
+                    self::$hash =  $hash;
+                break;
 
-    public static function generateHashWithPublicKey(string $data, bool $base64 = false)
-    {
-        $publicKey = openssl_pkey_get_public(file_get_contents(self::getPublicKeyFilePathAndName()));
-        openssl_public_encrypt("${data}", $hash, $publicKey, OPENSSL_PKCS1_PADDING);
-        self::$hash =  $hash;
+            case self::$publicKeyEncrypt:
+                    $publicKey = openssl_pkey_get_public(file_get_contents(self::getPublicKeyFilePathAndName()));
+                    openssl_public_encrypt("${data}", $hash, $publicKey,( $padding_algo ?? OPENSSL_PKCS1_OAEP_PADDING));
+                    self::$hash =  $hash;
+                break;
+
+            case self::$opensslSign:
+                    $privateKey = openssl_pkey_get_private(file_get_contents(self::getPrivateKeyFilePathAndName()));
+                    openssl_sign("${data}", $hash, $privateKey, ($padding_algo ?? OPENSSL_ALGO_SHA1));
+                    self::$hash =  $hash;
+                break;
+
+        endswitch;
+
         return $base64 ? base64_encode(self::$hash) : self::$hash;
     }
 }

@@ -36,19 +36,22 @@ $enc::setPublicKeyFilePathAndName($pubKey);
  * Uncomment to get new key Pairs
  * */
 
-//$enc::generateKeys();
+/*$enc::generateKeys();*/
 
 /*
  * Encrypt a message
- * Use generateHashWithPrivateKey() to encrypt with Private Key
- * Or use generateHashWithPublicKey() to encrypt with Public Key
+ * Use encrypt() method to encrypt, you must provide params types for encrypt
+ *
+ * $privateKeyEncrypt
+ * $publicKeyEncrypt
+ * $opensslSign
+ *
  *
  * set false to get the encrypted data without base64 encode
  * */
 
-print_r($enc::generateHashWithPrivateKey('I Will be encrypted', true));
+print_r($enc::encrypt('I Will be encrypted', $enc::$opensslSign));
 
-//$enc::generateHashWithPublicKey('I Will be encrypted', false);
 
 
 
