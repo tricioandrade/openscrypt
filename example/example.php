@@ -8,7 +8,7 @@ $enc = new \Tricioandrade\OpensCrypt\opensRSA();
  * Start by setting the openssl cnf
  * On Windows Xampp Openssl Config file
  * */
-$enc::setConfigFile('c:/xampp/php/extras/openssl/openssl.cnf');
+$enc::setConfigFile('../src/php/extras/openssl/openssl.cnf');
 
 /*
  * Goto php docs and search for more digest algo
@@ -36,7 +36,7 @@ $enc::setPublicKeyFilePathAndName($pubKey);
  * Uncomment to get new key Pairs
  * */
 
-/*$enc::generateKeys();*/
+$enc::generateKeys();
 
 /*
  * Encrypt a message
