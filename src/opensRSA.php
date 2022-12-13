@@ -9,7 +9,7 @@ class opensRSA
 
     private static $digest_alg;
     private static $privateKeyBits;
-    private static $configFile;
+    private static $configFile = '../php/extras/openssl/openssl.cnf';
 
     private static $privateKey;
     private static $publicKey;
