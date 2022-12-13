@@ -24,11 +24,11 @@ $enc::setPrivateKeyBits(1024);
 /*
  * Now set where you wanna save the keys
  * */
-$privKey = './keys/private.key';
-$pubKey = './keys/public.key';
+//$privKey = './keys/private.key';
+//$pubKey = './keys/public.key';
 
-$enc::setPrivateKeyFilePathAndName($privKey);
-$enc::setPublicKeyFilePathAndName($pubKey);
+//$enc::setPrivateKeyFilePathAndName($privKey);
+//$enc::setPublicKeyFilePathAndName($pubKey);
 
 /*
  * Generate The Keys
@@ -50,7 +50,7 @@ $enc::generateKeys();
  * set false to get the encrypted data without base64 encode
  * */
 
-print_r($enc::encrypt('I Will be encrypted', $enc::$opensslSign));
+//print_r($enc::encrypt('I Will be encrypted', $enc::$opensslSign));
 
 
 
