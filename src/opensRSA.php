@@ -132,7 +132,7 @@ class opensRSA
 
     }
 
-    public static function encrypt(string $data, int $generateWith = 1, bool $base64 = false, int $padding_algo = null)
+    public static function encrypt(string $data, int $generateWith = 3, bool $base64 = true, int $padding_algo = null)
     {
         switch($generateWith):
             case self::$privateKeyEncrypt:
