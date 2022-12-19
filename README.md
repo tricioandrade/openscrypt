@@ -7,7 +7,7 @@
 The class uses the Openssl php library to generate key pairs for asymmetric encryption.
 
 ## Installation
-<p>Open the terminal and run:</p>
+<p>Open your terminal and run:</p>
 
 ```
 composer require tricioandrade/openscrypt
