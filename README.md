@@ -23,13 +23,6 @@ include '../vendor/autoload.php';
 $enc = new \Tricioandrade\OpensCrypt\opensRSA();
 
 /*
- * First configure encrypt args
- * Start by setting the openssl cnf
- * On Windows Xampp Openssl Config file
- * */
-$enc::setConfigFile('c:/xampp/php/extras/openssl/openssl.cnf');
-
-/*
  * Goto php docs and search for more digest algo
  * On this example i'm using the SH1 or SH-1
  * */
@@ -43,8 +36,8 @@ $enc::setPrivateKeyBits(1024);
 /*
  * Now set where you wanna save the keys
  * */
-$privKey = './keys/private.key';
-$pubKey = './keys/public.key';
+$privKey = './private.key';
+$pubKey = './public.key';
 
 $enc::setPrivateKeyFilePathAndName($privKey);
 $enc::setPublicKeyFilePathAndName($pubKey);
@@ -59,15 +52,15 @@ $enc::setPublicKeyFilePathAndName($pubKey);
 
 /*
  * Encrypt a message
- * Use generateHashWithPrivateKey() to encrypt with Private Key
- * Or use generateHashWithPublicKey() to encrypt with Public Key
+ * Use encrypt() method to encrypt, you must provide params types for encrypt
+ *
+ * $privateKeyEncrypt
+ * $publicKeyEncrypt
+ * $opensslSign
+ *
  *
  * set false to get the encrypted data without base64 encode
  * */
 
-print_r($enc::generateHashWithPrivateKey('I Will be encrypted', true));
-
-//$enc::generateHashWithPublicKey('I Will be encrypted', false);
-```
-
+print_r($enc::encrypt('I Will be encrypted', $enc::$opensslSign));
 
