@@ -1,6 +1,6 @@
 # OpensCrypt (openscrypt)
 
-[![Latest Stable Version](http://poser.pugx.org/tricioandrade/openscrypt/v)](https://packagist.org/packages/tricioandrade/openscrypt) [![Total Downloads](http://poser.pugx.org/tricioandrade/openscrypt/downloads)](https://packagist.org/packages/tricioandrade/openscrypt) [![Latest Unstable Version](http://poser.pugx.org/tricioandrade/openscrypt/v/unstable)](https://packagist.org/packages/tricioandrade/openscrypt) [![License](http://poser.pugx.org/tricioandrade/openscrypt/license)](https://packagist.org/packages/tricioandrade/openscrypt) [![PHP Version Require](http://poser.pugx.org/tricioandrade/openscrypt/require/php)](https://packagist.org/packages/tricioandrade/openscrypt)
+[![Latest Stable Version](http://poser.pugx.org/tricioandrade/openscrypt/v)](https://packagist.org/packages/tricioandrade/openscrypt) [![Total Downloads](http://poser.pugx.org/tricioandrade/openscrypt/downloads)](https://packagist.org/packages/tricioandrade/openscrypt) [![License](http://poser.pugx.org/tricioandrade/openscrypt/license)](https://packagist.org/packages/tricioandrade/openscrypt) [![PHP Version Require](http://poser.pugx.org/tricioandrade/openscrypt/require/php)](https://packagist.org/packages/tricioandrade/openscrypt)
 
 <p>OpensCrypt is a package that aims to integrate scripts <i>Classes or Objects, methods</i> that will use PHP's cryptographic functions to encrypt data.</p>
 
