@@ -17,8 +17,10 @@ $enc::setPrivateKeyBits(1024);
 /*
  * Now set where you wanna save the keys
  * */
-$privKey = './private.key';
-$pubKey = './public.key';
+$privKey = './private.pem';
+$pubKey = './public.pem';
+//
+//if(!file_exists($privKey)) $enc::generateKeys();
 
 $enc::setPrivateKeyFilePathAndName($privKey);
 $enc::setPublicKeyFilePathAndName($pubKey);
@@ -29,7 +31,7 @@ $enc::setPublicKeyFilePathAndName($pubKey);
  * Uncomment to get new key Pairs
  * */
 
-//$enc::generateKeys();
+if(!file_exists(__DIR__.'/private.pem')) $enc::generateKeys();
 
 /*
  * Encrypt a message
@@ -43,7 +45,7 @@ $enc::setPublicKeyFilePathAndName($pubKey);
  * set false to get the encrypted data without base64 encode
  * */
 
-print_r($enc::encrypt('I Will be encrypted', $enc::$opensslSign));
+//print_r($enc::encrypt('I Will be encrypted', $enc::$opensslSign));
 
 
 
