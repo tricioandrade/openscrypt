@@ -2,6 +2,7 @@
 
 namespace OpensCrypt\App\Core;
 
+use ErrorException;
 use OpensCrypt\App\Traits\GenerateKeysTrait;
 
 class GenerateKeys
@@ -9,30 +10,38 @@ class GenerateKeys
     use GenerateKeysTrait;
 
     /**
-     * Set config parameters
+     * Set encryption config parameters
      *
+     * @param string $dir
      * @param array $config
-     * @param string $privateFileDir
-     * @param string $publicFileDir
      */
     public function __construct(
+        public string $dir =  '',
         public array $config = [
-            'config'            => __DIR__ . '../../../bin/php/extras/openssl/openssl.cnf',
+            'config'            => __DIR__ . '../../../../bin/php/extras/openssl/openssl.cnf',
             'private_key_bits'  => 1024,
             'digest_alg'        => 'sh1'
-        ],
-        public string $privateFileDir = __DIR__ . '\\private.pem',
-        public string $publicFileDir  = __DIR__ . '\\public.pem'
-
+        ]
     ){ return $this;}
 
     /**
-     * Generate hash and return bool
+     * Generate keys
      *
-     * @return bool
+     * @return GenerateKeys
+     * @throws ErrorException
      */
-    public function get(): bool
+    public function generate(): self
     {
-        return $this->generate($this->config, $this->privateFileDir, $this->publicFileDir);
+        $this->generateKeys($this->config, $this->dir);
+        $this->setKeysDir();
+        return $this;
+    }
+
+    /**
+     * Set the keys dir
+     */
+    private function setKeysDir()
+    {
+        $this->dir = $this->keysDir;
     }
 }
