@@ -8,8 +8,9 @@ use OpenSSLAsymmetricKey;
 
 trait CypherTrait
 {
-    public string $key;
+    public mixed $key;
     public string $hash;
+
 
     /**
      * Encrypt the given string target
@@ -28,9 +29,10 @@ trait CypherTrait
         int $paddingAlgo 
     ): string
     {
-        if (empty($key)) throw new Exception('You must set the encryption key!');
+        if (empty($this->key)) throw new Exception('You must set the encryption key!');
 
-        $this->key = $this->loadKeyFromFile($cypher) ?? $this->key;
+        $this->key = $this->loadKey($cypher);
+
         try {
 
             switch ($cypher){
@@ -74,15 +76,14 @@ trait CypherTrait
      * @param $cypher
      * @return OpenSSLAsymmetricKey|bool|null
      */
-    private function loadKeyFromFile($cypher): OpenSSLAsymmetricKey|bool|null
+    private function loadKey($cypher): OpenSSLAsymmetricKey|bool|null
     {
-        if (is_file($this->key))
-            return match ($cypher){
-                EncryptionTypesEnum::PRIVATE_KEY_ENCRYPTION->value,
-                EncryptionTypesEnum::OPEN_SSL_SIGN->value => openssl_pkey_get_private(file_get_contents($this->key)),
-                EncryptionTypesEnum::PUBLIC_KEY_ENCRYPTION->value   => openssl_pkey_get_public(file_get_contents($this->key))
-            };
+        if (is_file($this->key)) $this->key = file_get_contents($this->key);
 
-        return null;
+        return match ($cypher){
+            EncryptionTypesEnum::PRIVATE_KEY_ENCRYPTION->value,
+            EncryptionTypesEnum::OPEN_SSL_SIGN->value => openssl_pkey_get_private($this->key),
+            EncryptionTypesEnum::PUBLIC_KEY_ENCRYPTION->value   => openssl_pkey_get_public($this->key)
+        };
     }
 }
