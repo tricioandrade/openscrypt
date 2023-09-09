@@ -33,7 +33,7 @@ class Cypher
      * @param string $key
      * @return $this
      */
-    public function setKey(string $key): static
+    public function setCypherKey(string $key): static
     {
         $this->key = $key;
         return $this;
