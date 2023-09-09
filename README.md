@@ -1,4 +1,4 @@
-# openscrypt
+# OpenScrypt
 
 [![Latest Stable Version](http://poser.pugx.org/tricioandrade/openscrypt/v)](https://packagist.org/packages/tricioandrade/openscrypt) [![Total Downloads](http://poser.pugx.org/tricioandrade/openscrypt/downloads)](https://packagist.org/packages/tricioandrade/openscrypt) [![License](http://poser.pugx.org/tricioandrade/openscrypt/license)](https://packagist.org/packages/tricioandrade/openscrypt) [![PHP Version Require](http://poser.pugx.org/tricioandrade/openscrypt/require/php)](https://packagist.org/packages/tricioandrade/openscrypt)
 
@@ -7,60 +7,56 @@
 The class uses the Openssl php library to generate key pairs for asymmetric encryption.
 
 ## Installation
-<p>Open your terminal and run:</p>
 
 ```
 composer require tricioandrade/openscrypt
 ```
 
-## How to use
-You can download the example script using [OpensRSA](http://github.com/tricioandrade/openscrypt) Class. Or just follow the same example below.
+### How to use generate keys
 
 ```php
 <?php
-include '../vendor/autoload.php';
+    $instance = new GenerateKeys();
+    $instance->generate();
+    
+    // Print or save your keys anywere 
+    $instance->getKeys();
+```
 
-$enc = new \Tricioandrade\OpensCrypt\opensRSA();
+<p>Change where you want save your keys</p>
 
-/*
- * Goto php docs and search for more digest algo
- * On this example i'm using the SH1 or SH-1
- * */
-$enc::setDigestAlg('sh1');
+```php
+    $instance = new GenerateKeys(__DIR__ . '\\');
+```
 
-/*
- * Set the Private key bits
- * */
-$enc::setPrivateKeyBits(1024);
+<p>Get complete keys path or the generated keys:</p>
 
-/*
- * Now set where you wanna save the keys
- * */
-$privKey = './private.key';
-$pubKey = './public.key';
+```php
+    $instance = new GenerateKeys(__DIR__ . '\\');
+    $instance->generate();
+    
+    if ($instance->isPem()){
+        print_r($instance->getKeysPath());
+    }
+    else{
+        print_r($instance->getKeys());
+    }
+```
 
-$enc::setPrivateKeyFilePathAndName($privKey);
-$enc::setPublicKeyFilePathAndName($pubKey);
+<p>Change files name:</p>
 
-/*
- * Generate The Keys
- *
- * Uncomment to get new key Pairs
- * */
+```php
+    $instance->privateKeyFileName   = 'MyPrivateKey.pem';
+    $instance->publicKeyFileName    = 'MyPublicKey.pem';
+```
 
-//$enc::generateKeys();
+### Starting encryption
 
-/*
- * Encrypt a message
- * Use encrypt() method to encrypt, you must provide params types for encrypt
- *
- * $privateKeyEncrypt
- * $publicKeyEncrypt
- * $opensslSign
- *
- *
- * set false to get the encrypted data without base64 encode
- * */
-
-print_r($enc::encrypt('I Will be encrypted', $enc::$opensslSign));
-
+```php
+    $cypher = new Cypher('Hello');
+        
+    print_r(
+        $cypher->setCypherKey(file_get_contents('./MyPrivateKey.pem'))
+        ->getHash()
+    );
+```
